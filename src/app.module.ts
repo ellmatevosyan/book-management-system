@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './user/users.module';
+import { AuthorModule } from './author/author.module';
 
 @Module({
   imports: [
@@ -20,8 +21,10 @@ import { UsersModule } from './user/users.module';
       database: process.env.POSTGRES_DB,
       autoLoadEntities: true,
       synchronize: true,
+      logging: 'all',
     }),
     UsersModule,
+    AuthorModule,
   ],
   controllers: [AppController],
   providers: [AppService],
