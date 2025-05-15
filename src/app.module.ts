@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './user/users.module';
 import { AuthorModule } from './author/author.module';
+import { ReviewModule } from './review/review.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { AuthorModule } from './author/author.module';
     }),
     UsersModule,
     AuthorModule,
+    ReviewModule,
   ],
   controllers: [AppController],
   providers: [AppService],
