@@ -16,6 +16,7 @@ export class ReviewService {
       text: createReviewDto.text,
       stars: createReviewDto.stars,
       user: { id: createReviewDto.userId },
+      book: { id: createReviewDto.bookId },
     });
     return this.reviewRepository.save(review);
   }
@@ -45,4 +46,21 @@ export class ReviewService {
     }
     return updatedReview;
   }
+
+  async averageStarsForBook(bookId: number): Promise<number> {
+    try {
+      const averageStars = await this.reviewRepository
+        .createQueryBuilder('review')
+        .select('AVG(review.stars)', 'avg')
+        .where('review.bookId = :bookId', { bookId })
+        .getRawOne();
+      return +averageStars.avg!;
+    } catch (err) {
+      console.log(err);
+      return 0;
+    }
+    
+  }
+
+
 }

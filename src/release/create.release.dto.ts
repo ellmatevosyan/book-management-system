@@ -9,4 +9,7 @@ export class CreateReleaseDto {
 
   @IsNumber()
   bookId: number;
+
+  @IsNumber()
+  availableTickets: number;
 }
