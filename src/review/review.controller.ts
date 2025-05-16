@@ -44,4 +44,9 @@ export class ReviewController {
   ): Promise<Review> {
     return await this.reviewService.update(id, reviewData);
   }
+
+  @Get('average/:id')
+  async getAvgStars(@Param('id', ParseIntPipe) id: number): Promise<number> {
+    return await this.reviewService.averageStarsForBook(id);
+  }
 }

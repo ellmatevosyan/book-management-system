@@ -8,6 +8,7 @@ import { AuthorModule } from './author/author.module';
 import { ReviewModule } from './review/review.module';
 import { BookModule } from './book/book.module';
 import { ReleaseModule } from './release/release.module';
+import { TicketModule } from './ticket/ticket.module';
 
 @Module({
   imports: [
@@ -24,12 +25,14 @@ import { ReleaseModule } from './release/release.module';
       database: process.env.POSTGRES_DB,
       autoLoadEntities: true,
       synchronize: true,
+    
     }),
     UsersModule,
     AuthorModule,
     ReviewModule,
     BookModule,
     ReleaseModule,
+    TicketModule,
   ],
   controllers: [AppController],
   providers: [AppService],

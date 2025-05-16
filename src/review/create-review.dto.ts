@@ -9,4 +9,7 @@ export class CreateReviewDto {
 
   @IsNumber()
   userId: number;
+
+  @IsNumber()
+  bookId: number;
 }

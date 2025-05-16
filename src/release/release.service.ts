@@ -15,6 +15,7 @@ export class ReleaseService {
       startDate: createReleaseDto.startDate,
       address: createReleaseDto.address,
       book: { id: createReleaseDto.bookId },
+      availableTickets: createReleaseDto.availableTickets,
     });
     return this.releaseRepository.save(release);
   }

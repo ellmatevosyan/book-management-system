@@ -1,4 +1,4 @@
-import { Entity, ManyToOne, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, ManyToOne, PrimaryGeneratedColumn, Column, JoinTable, ManyToMany } from 'typeorm';
 import { User } from 'src/user/user.entity';
 import { Book } from 'src/book/book.entity';
 
@@ -18,4 +18,8 @@ export class Review {
 
   @ManyToOne(() => Book, (book) => book.reviews)
   book: Book;
+
+
+
+
 }
