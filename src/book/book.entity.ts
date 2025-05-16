@@ -1,4 +1,5 @@
 import { Author } from 'src/author/author.entity';
+import { Release } from 'src/release/release.entity';
 import { Review } from 'src/review/review.entity';
 import {
   Column,
@@ -6,6 +7,7 @@ import {
   JoinTable,
   ManyToMany,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -21,6 +23,9 @@ export class Book {
   reviews: Review[];
 
   @ManyToMany(() => Author)
-  @JoinTable()
+  @JoinTable({})
   authors: Author[];
+
+  @OneToOne(() => Release, (release) => release.book)
+  release: Release;
 }
