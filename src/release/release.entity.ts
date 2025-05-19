@@ -22,7 +22,7 @@ export class Release {
   address: string;
 
   @Column()
-  availableTickets:number
+  availableTickets: number;
 
   @OneToOne(() => Book, (book) => book.release)
   @JoinColumn()

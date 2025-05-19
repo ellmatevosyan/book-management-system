@@ -9,6 +9,8 @@ import { ReviewModule } from './review/review.module';
 import { BookModule } from './book/book.module';
 import { ReleaseModule } from './release/release.module';
 import { TicketModule } from './ticket/ticket.module';
+import { AuthModule } from './auth/auth.module';
+
 
 @Module({
   imports: [
@@ -19,13 +21,13 @@ import { TicketModule } from './ticket/ticket.module';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.POSTGRES_HOST,
-      port: +(process.env.POSTGRES_PORT || 5672),
+      port: +(process.env.POSTGRES_PORT || 5432),
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
       autoLoadEntities: true,
       synchronize: true,
-    
+      
     }),
     UsersModule,
     AuthorModule,
@@ -33,6 +35,7 @@ import { TicketModule } from './ticket/ticket.module';
     BookModule,
     ReleaseModule,
     TicketModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -23,9 +23,8 @@ export class UsersService {
       name: createUserDto.name,
       email: createUserDto.email,
       password: hashedPassword,
+      role: createUserDto.role || 'user',
     });
-
-    console.log(newUser);
 
     return this.userRepository.save(newUser);
   }
@@ -58,5 +57,13 @@ export class UsersService {
       throw new NotFoundException(`User with ${id} id is not found. `);
     }
     return user;
+  }
+
+  async findByEmail(email: string): Promise<User | undefined> {
+    const userEmail = await this.userRepository.findOneBy({ email });
+    if (!userEmail) {
+      throw new NotFoundException(`User with ${email} does not exist`);
+    }
+    return userEmail;
   }
 }

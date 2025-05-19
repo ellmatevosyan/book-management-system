@@ -8,10 +8,15 @@ import {
   ParseIntPipe,
   Param,
   HttpCode,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateAuthorDto } from './create-author.dto';
 import { AuthorService } from './author.service';
 import { Author } from './author.entity';
+import { Roles } from 'src/auth/roles.decorator';
+import { Role } from 'src/auth/role.enum';
+import { AuthGuard } from 'src/auth/auth.guard';
+import { RolesGuard } from 'src/auth/roles.guard';
 
 @Controller('author')
 export class AuthorController {
@@ -33,12 +38,16 @@ export class AuthorController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(Role.Admin)
   @HttpCode(204) //Content not found
   remove(@Param('id') id: number): Promise<void> {
     return this.authorService.remove(+id);
   }
 
   @Put(':id')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(Role.Admin)
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() authorData: Partial<Author>,

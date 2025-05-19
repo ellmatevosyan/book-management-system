@@ -8,10 +8,15 @@ import {
   Delete,
   HttpCode,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { Review } from './review.entity';
 import { CreateReviewDto } from './create-review.dto';
 import { ReviewService } from './review.service';
+import { Roles } from 'src/auth/roles.decorator';
+import { Role } from 'src/auth/role.enum';
+import { AuthGuard } from 'src/auth/auth.guard';
+import { RolesGuard } from 'src/auth/roles.guard';
 
 @Controller('review')
 export class ReviewController {
@@ -32,6 +37,8 @@ export class ReviewController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(Role.Admin)
   @HttpCode(204)
   async remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
     await this.reviewService.remove(id);

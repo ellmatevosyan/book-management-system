@@ -7,10 +7,15 @@ import {
   Get,
   Delete,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './create-user.dto';
 import { User } from './user.entity';
+import { Roles } from 'src/auth/roles.decorator';
+import { Role } from 'src/auth/role.enum';
+import { AuthGuard } from 'src/auth/auth.guard';
+import { RolesGuard } from 'src/auth/roles.guard';
 
 @Controller('users')
 export class UsersController {
@@ -33,6 +38,8 @@ export class UsersController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(Role.Admin)
   remove(@Param('id') id: number): Promise<void> {
     return this.usersService.remove(+id);
   }
@@ -43,5 +50,10 @@ export class UsersController {
     @Body() userData: Partial<User>,
   ): Promise<User> {
     return this.usersService.update(+id, userData);
+  }
+
+  @Get(':email')
+  async getByEmail(@Param('email') email: string): Promise<User | undefined> {
+    return await this.usersService.findByEmail(email);
   }
 }

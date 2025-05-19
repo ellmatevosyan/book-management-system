@@ -59,8 +59,5 @@ export class ReviewService {
       console.log(err);
       return 0;
     }
-    
   }
-
-
 }
