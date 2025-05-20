@@ -22,7 +22,7 @@ import { RolesGuard } from 'src/auth/roles.guard';
 export class BookController {
   constructor(private readonly bookService: BookService) {}
 
-  @Post('register')
+  @Post('')
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.Admin)
   async create(@Body() createBookDto: CreateBookDto): Promise<Book> {

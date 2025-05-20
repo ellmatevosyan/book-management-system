@@ -21,7 +21,7 @@ import { RolesGuard } from 'src/auth/roles.guard';
 @Controller('review')
 export class ReviewController {
   constructor(private readonly reviewService: ReviewService) {}
-  @Post('register')
+  @Post('')
   async create(@Body() createReviewDto: CreateReviewDto): Promise<Review> {
     return this.reviewService.create(createReviewDto);
   }

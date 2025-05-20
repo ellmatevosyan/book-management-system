@@ -22,7 +22,7 @@ import { RolesGuard } from 'src/auth/roles.guard';
 export class ReleaseController {
   constructor(private readonly releaseService: ReleaseService) {}
 
-  @Post('register')
+  @Post('')
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.Admin)
   async create(@Body() createReleaseDto: CreateReleaseDto): Promise<Release> {

@@ -22,7 +22,7 @@ import { RolesGuard } from 'src/auth/roles.guard';
 export class AuthorController {
   constructor(private readonly authorService: AuthorService) {}
 
-  @Post('register')
+  @Post('')
   async create(@Body() createAuthorDto: CreateAuthorDto): Promise<Author> {
     return this.authorService.create(createAuthorDto);
   }

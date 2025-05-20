@@ -26,6 +26,7 @@ export class BookService {
       title: createBookDto.title,
       authors: [author], //expects an array of Author entity
     });
+
     return this.bookRepository.save(book);
   }
 

@@ -22,7 +22,7 @@ import { RolesGuard } from 'src/auth/roles.guard';
 export class TicketController {
   constructor(private readonly ticketService: TicketService) {}
 
-  @Post('register')
+  @Post('')
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.Admin)
   async create(@Body() createticketDto: CreateTicketDto): Promise<Ticket> {
