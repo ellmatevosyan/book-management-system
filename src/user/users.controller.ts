@@ -56,4 +56,18 @@ export class UsersController {
   async getByEmail(@Param('email') email: string): Promise<User | undefined> {
     return await this.usersService.findByEmail(email);
   }
+
+  @Get('userReviews/:id')
+  async getUserReviews(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<Record<number, string>> {
+    const reviewsMap = await this.usersService.getUserReviews(id);
+
+    //Convert Map<number, string> to a plain object for proper JSON serialization
+    const result: Record<number, string> = {};
+    reviewsMap.forEach((text, bookId) => {
+      result[bookId] = text;
+    });
+    return result;
+  }
 }

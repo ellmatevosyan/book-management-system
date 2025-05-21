@@ -56,4 +56,11 @@ export class BookController {
   ): Promise<Book> {
     return this.bookService.update(id, bookData);
   }
+
+  @Get('bookByAuthor/:id')
+  async getBookByAuthor(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<number[]> {
+    return await this.bookService.getAllBooksOfAuthor(id);
+  }
 }

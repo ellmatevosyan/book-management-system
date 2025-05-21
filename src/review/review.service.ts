@@ -60,4 +60,14 @@ export class ReviewService {
       return 0;
     }
   }
+
+  async getBookReviews(bookId: number): Promise<string[]> {
+    const bookReviews = await this.reviewRepository
+      .createQueryBuilder('review')
+      .select('review.text', 'text')
+      .where('review.bookId = :bookId', { bookId })
+      .getRawMany();
+    const result = bookReviews.map((review) => review.text);
+    return result;
+  }
 }

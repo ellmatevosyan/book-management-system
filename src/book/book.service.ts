@@ -54,4 +54,14 @@ export class BookService {
     }
     return updatedBook;
   }
+
+  async getAllBooksOfAuthor(authorId: number): Promise<number[]> {
+    const authorBooks = await this.bookRepository
+      .createQueryBuilder()
+      .select('DISTINCT book_authors_author.bookId', 'bookId')
+      .from('book_authors_author', 'book_authors_author')
+      .where('book_authors_author.authorId= :authorId', { authorId })
+      .getRawMany();
+    return authorBooks.map((row) => row.bookId);
+  }
 }

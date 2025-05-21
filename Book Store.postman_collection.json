@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Karine\",\r\n    \"email\":\"Kar344@gmail.com\",\r\n    \"password\":\"UUUKKK8989\"\r\n}",
+							"raw": "{\r\n  \"name\":\"Admin\",\r\n  \"email\": \"admin@gmail.com\",\r\n  \"password\": \"StrongPassword123!\",\r\n  \"role\":\"admin\"\r\n  \r\n  \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -175,6 +175,34 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get All Reviews of the User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Karine\",\r\n    \"email\":\"Kar344@gmail.com\",\r\n    \"password\":\"UUUKKK8989\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/userReviews/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"userReviews",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -188,7 +216,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Hovhannes\",\r\n    \"nationality\":\"Armenian\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Hovhannes\",\r\n    \"nationality\":\"Armenia\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -196,7 +224,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/author/register",
+							"raw": "http://localhost:3000/author/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -204,7 +232,7 @@
 							"port": "3000",
 							"path": [
 								"author",
-								"register"
+								""
 							]
 						}
 					},
@@ -289,7 +317,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"text\": \"Very good book\",\r\n    \"stars\": 5,\r\n    \"userId\": 1\r\n}",
+							"raw": "{\r\n    \"text\": \"Bad\",\r\n    \"stars\": 2,\r\n    \"userId\": 1,\r\n    \"bookId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -297,7 +325,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/review/register",
+							"raw": "http://localhost:3000/review/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -305,7 +333,7 @@
 							"port": "3000",
 							"path": [
 								"review",
-								"register"
+								""
 							]
 						}
 					},
@@ -394,6 +422,34 @@
 						"header": []
 					},
 					"response": []
+				},
+				{
+					"name": "Get All Reviews Of the Book",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Bad\",\r\n    \"stars\": 2,\r\n    \"userId\": 1,\r\n    \"bookId\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/review/bookReview/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"review",
+								"bookReview",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -404,10 +460,16 @@
 					"name": "Create Book",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoiYWRtaW5AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDc2NTA4NjgsImV4cCI6MTc0NzY1NDQ2OH0.oBVtE54PEg_KTOb1yY_6J_WSeVdbI0EFcv86QRZ_alg",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Poqrik Ishxan\",\r\n    \"authorId\": 2\r\n}",
+							"raw": "{\r\n    \"title\": \"Shunn u Katun\",\r\n    \"authorId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -415,15 +477,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/books/register",
+							"raw": "http://localhost:3000/books",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"books",
-								"register"
+								"books"
 							]
 						}
 					},
@@ -535,6 +596,34 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get All Books Of the Author",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Poqrik Ishxan\",\r\n    \"authorId\": 2\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/books/bookByAuthor/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"bookByAuthor",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -545,10 +634,16 @@
 					"name": "Create Release",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ3NzQyNjEyLCJleHAiOjE3NDc3NDYyMTJ9.GZqOj4AD3Ql60GRzWM-LJuMQFxKxwff48XY0dbQEo28",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"startDate\": \"2025-08-10\",\r\n    \"address\": \"Davit Anhaght\",\r\n    \"bookId\": 1\r\n}",
+							"raw": "{\r\n    \"startDate\": \"2025-08-27\",\r\n    \"address\": \"Saryan Street\",\r\n    \"bookId\": 1,\r\n    \"availableTickets\": 450\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -556,7 +651,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/release/register",
+							"raw": "http://localhost:3000/release/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -564,7 +659,7 @@
 							"port": "3000",
 							"path": [
 								"release",
-								"register"
+								""
 							]
 						}
 					},
@@ -685,10 +780,16 @@
 					"name": "Create Ticket",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ3NzQyNjEyLCJleHAiOjE3NDc3NDYyMTJ9.GZqOj4AD3Ql60GRzWM-LJuMQFxKxwff48XY0dbQEo28",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userId\":1,\r\n    \"releaseId\":5\r\n}",
+							"raw": "{\r\n    \"userId\":1,\r\n    \"releaseId\":1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -696,7 +797,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/tickets/register",
+							"raw": "http://localhost:3000/tickets/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -704,7 +805,7 @@
 							"port": "3000",
 							"path": [
 								"tickets",
-								"register"
+								""
 							]
 						}
 					},

@@ -4,12 +4,16 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { User } from './user.entity';
 import { CreateUserDto } from './create-user.dto';
+import { Review } from 'src/review/review.entity';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+
+    @InjectRepository(Review)
+    private reviewRepository: Repository<Review>,
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
@@ -65,5 +69,19 @@ export class UsersService {
       throw new NotFoundException(`User with ${email} does not exist`);
     }
     return userEmail;
+  }
+
+  async getUserReviews(userId: number): Promise<Map<number, string>> {
+    const userReviews = await this.reviewRepository
+      .createQueryBuilder('review')
+      .select(['review.bookId AS bookid', 'review.text AS text'])
+      .where('review.userId=:userId', { userId })
+      .getRawMany();
+
+    const result = new Map<number, string>();
+    userReviews.forEach((review) => {
+      result.set(review.bookid, review.text);
+    });
+    return result;
   }
 }
